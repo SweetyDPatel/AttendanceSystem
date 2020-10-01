@@ -32,4 +32,10 @@ class DepartmentsTable extends Migration
             //
         });
     }
+    public function Updown()
+    {
+        Schema::table('departments', function (Blueprint $table) {
+            //
+        });
+    }
 }
