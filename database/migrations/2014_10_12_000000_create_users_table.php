@@ -32,4 +32,8 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('teachers');
     }
+     public function forward()
+    {
+        Schema::dropIfExists('teachers');
+    }
 }
