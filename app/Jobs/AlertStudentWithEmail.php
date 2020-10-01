@@ -96,7 +96,7 @@ class AlertStudentWithEmail implements ShouldQueue
         $subject = "Low Attendance";
         $mailer->send(
             'email.attendance',
-            ['name' => $this->student['name'], 'prn' => $this->student['prn'], 'percentage' => $this->stats['percentage'], 'subject_name' => $this->stats['subject_name']],
+            ['name' => $this->student['name'], 'percentage' => $this->stats['percentage'], 'subject_name' => $this->stats['subject_name']],
             function ($mail) use ($subject) {
                 $mail->from(env('MAIL_USERNAME'), env('MAIL_PASSWORD'));
                 $mail->to($this->student['email'], $this->student['name']);
