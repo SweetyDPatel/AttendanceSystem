@@ -22,6 +22,17 @@ class ProgramsTable extends Migration
             $table->foreign('department')->references('name')->on('departments');
         });
     }
+    public function up()
+    {
+        Schema::create('programs', function (Blueprint $table) {
+            $table->string('name', 20);
+            $table->string('department', 20)->comment('fk-departments');
+            $table->timestamps();
+
+            $table->primary('name');
+            $table->foreign('department')->references('name')->on('departments');
+        });
+    }
 
     /**
      * Reverse the migrations.
