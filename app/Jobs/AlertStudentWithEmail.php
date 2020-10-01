@@ -90,6 +90,22 @@ class AlertStudentWithEmail implements ShouldQueue
         Log::info("Job processed");
     }
 
+     public function fetchMailrecord(Mailer $mailer)
+    {
+        Log::info("Job Processing started | Attempt : " . $this->attempts());
+        $subject = "Low Attendance";
+        $mailer->send(
+            'email.attendance',
+            ['name' => $this->student['name'], 'prn' => $this->student['prn'], 'percentage' => $this->stats['percentage'], 'subject_name' => $this->stats['subject_name']],
+            function ($mail) use ($subject) {
+                $mail->from(env('MAIL_USERNAME'), env('MAIL_PASSWORD'));
+                $mail->to($this->student['email'], $this->student['name']);
+                $mail->subject($subject);
+            }
+        );
+        Log::info("Job processed");
+    }
+    
     /**
      * Handle a job failure.
      *
